@@ -21,6 +21,23 @@ class ProductCubit extends Cubit<ProductState> {
     }
   }
 
+  void searchProducts(String keyword) async {
+    try {
+      emit(ProductLoading());
+
+      List<ProductModels> products = await ProductService().getProducts();
+      // Lakukan filter berdasarkan kata kunci
+      final searchResults = products
+          .where((product) =>
+              product.name.toLowerCase().contains(keyword.toLowerCase()))
+          .toList();
+
+      emit(ProductSearchSuccess(searchResults));
+    } catch (e) {
+      emit(ProductFailed("Error: $e"));
+    }
+  }
+
   // void getProductsByStore(String storeId) async {
   //   try {
   //     emit(ProductLoading());

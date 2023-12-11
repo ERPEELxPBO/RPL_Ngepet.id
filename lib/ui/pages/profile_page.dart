@@ -18,65 +18,107 @@ class ProfilePage extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                margin: const EdgeInsets.symmetric(
-                  vertical: 20,
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 50,
-                      width: 50,
-                      margin: const EdgeInsets.only(
-                        left: 20,
-                        right: 20,
-                      ),
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage(
-                            "assets/user_6.png",
-                          ),
-                        ),
-                      ),
+              BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
+                if (state is AuthSuccess) {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(
+                      vertical: 20,
                     ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        BlocBuilder<AuthCubit, AuthState>(
-                          builder: (context, state) {
-                            if (state is AuthSuccess) {
-                              return Text(
-                                state.user.name,
-                                style: boldTextStyle.copyWith(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                              );
-                            } else {
-                              return Text("");
-                            }
-                          },
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, "/profile-detail");
-                          },
-                          child: Text(
-                            "Lihat Profil",
-                            style: regularTextStyle.copyWith(
-                              fontSize: 16,
+                        Container(
+                          height: 50,
+                          width: 50,
+                          margin: const EdgeInsets.only(
+                            left: 20,
+                            right: 20,
+                          ),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(
+                                state.user.imageUrl,
+                              ),
                             ),
                           ),
                         ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              state.user.name,
+                              style: boldTextStyle.copyWith(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, "/profile-detail");
+                              },
+                              child: Text(
+                                "Lihat Profil",
+                                style: regularTextStyle.copyWith(
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
-                  ],
-                ),
-              ),
+                  );
+                } else {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(
+                      vertical: 20,
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: 50,
+                          width: 50,
+                          margin: const EdgeInsets.only(
+                            left: 20,
+                            right: 20,
+                          ),
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Data is not loaded",
+                              style: boldTextStyle.copyWith(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, "/profile-detail");
+                              },
+                              child: Text(
+                                "Lihat Profil",
+                                style: regularTextStyle.copyWith(
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                }
+              }),
               SettingItemCard(
                 title: "Pengaturan Akun",
                 onTap: () {},

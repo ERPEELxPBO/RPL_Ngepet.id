@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ngepet_id/cubit/auth_cubit.dart';
+import 'package:ngepet_id/cubit/consultation_cubit.dart';
 import 'package:ngepet_id/cubit/page_cubit.dart';
 import 'package:ngepet_id/cubit/pilih_voucher_cubit.dart';
 import 'package:ngepet_id/cubit/product_cubit.dart';
@@ -16,6 +17,7 @@ import 'cubit/metode_pembayaran_cubit.dart';
 import 'cubit/metode_pengiriman_cubit.dart';
 import 'ui/pages/ajukan_dokter.dart';
 import 'ui/pages/cart_page.dart';
+import 'ui/pages/katalog_page.dart';
 import 'ui/pages/login_page.dart';
 import 'ui/pages/main_page.dart';
 import 'ui/pages/notifikasi_page.dart';
@@ -55,6 +57,9 @@ class MyApp extends StatelessWidget {
           create: (context) => AuthCubit(),
         ),
         BlocProvider(
+          create: (context) => ConsultationCubit(),
+        ),
+        BlocProvider(
           create: (context) => ProductCubit(),
         ),
         BlocProvider(
@@ -85,9 +90,10 @@ class MyApp extends StatelessWidget {
           '/pengiriman': (context) => const PengirimanPage(),
           '/pilih-voucher': (context) => const PilihVoucherPage(),
           '/profile-detail': (context) => const ProfileDetailPage(),
-          '/ajukan-toko': (context) => const AjukanBukaTokoPage(),
+          '/ajukan-toko': (context) => AjukanBukaTokoPage(),
           '/ajukan-role-dokter': (context) => const AjukanDokterPage(),
           '/pencarian': (context) => PencarianPage(),
+          '/katalog': (context) => KatalogPage(),
         },
       ),
     );

@@ -46,58 +46,46 @@ class RegisterPage extends StatelessWidget {
                   hintText: "Masukkan nama anda",
                   controller: nameController,
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Nama tidak boleh kosong';
-                    }
-                    return null;
+                    // if (value == null || value.isEmpty) {
+                    //   return 'Nama tidak boleh kosong';
+                    // }
+                    // return null;
                   },
-                ),
-                SizedBox(
-                  height: 20,
                 ),
                 CustomTextFormField(
                   title: "Username*",
                   hintText: "Masukkan username anda",
                   controller: usernameController,
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Username tidak boleh kosong';
-                    }
-                    return null;
+                    // if (value == null || value.isEmpty) {
+                    //   return 'Username tidak boleh kosong';
+                    // }
+                    // return null;
                   },
-                ),
-                SizedBox(
-                  height: 20,
                 ),
                 CustomTextFormField(
                   title: "No Handphone*",
                   hintText: "Masukkan nomor handphone anda",
                   controller: noHandphoneController,
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Nomor handphone tidak boleh kosong';
-                    }
-                    return null;
+                    // if (value == null || value.isEmpty) {
+                    //   return 'Nomor handphone tidak boleh kosong';
+                    // }
+                    // return null;
                   },
-                ),
-                SizedBox(
-                  height: 20,
                 ),
                 CustomTextFormField(
                   title: "Email*",
                   hintText: "Masukkan email anda",
                   controller: emailController,
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Email tidak boleh kosong';
-                    } else if (!value.contains('@')) {
-                      return 'Email tidak valid';
-                    }
-                    return null;
+                    // if (value == null || value.isEmpty) {
+                    //   return 'Email tidak boleh kosong';
+                    // } else if (!value.contains('@')) {
+                    //   return 'Email tidak valid';
+                    // }
+                    // return null;
                   },
-                ),
-                SizedBox(
-                  height: 20,
                 ),
                 CustomTextFormField(
                   title: "Password*",
@@ -105,14 +93,11 @@ class RegisterPage extends StatelessWidget {
                   hintText: "Masukkan password anda",
                   controller: passwordController,
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Password tidak boleh kosong';
-                    }
-                    return null;
+                    // if (value == null || value.isEmpty) {
+                    //   return 'Password tidak boleh kosong';
+                    // }
+                    // return null;
                   },
-                ),
-                SizedBox(
-                  height: 20,
                 ),
                 CustomTextFormField(
                   title: "Ulangi Password*",
@@ -120,10 +105,10 @@ class RegisterPage extends StatelessWidget {
                   hintText: "Masukkan ulang password anda",
                   controller: rPasswordController,
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Ulangi password tidak boleh kosong';
-                    }
-                    return null;
+                    // if (value == null || value.isEmpty) {
+                    //   return 'Ulangi password tidak boleh kosong';
+                    // }
+                    // return null;
                   },
                 ),
                 const SizedBox(
@@ -157,13 +142,14 @@ class RegisterPage extends StatelessWidget {
                         titleColor: kWhiteColor,
                         onTap: () {
                           context.read<AuthCubit>().register(
-                                email: emailController.text,
-                                name: nameController.text,
-                                password: passwordController.text,
-                                username: usernameController.text,
-                                no_telepon: noHandphoneController.text,
-                                role_id: 'usr_usr',
-                              );
+                              email: emailController.text,
+                              name: nameController.text,
+                              password: passwordController.text,
+                              username: usernameController.text,
+                              no_telepon: noHandphoneController.text,
+                              role_id: 'usr_usr',
+                              imageUrl:
+                                  'https://firebasestorage.googleapis.com/v0/b/ngepet-id.appspot.com/o/imageUsers%2Fdokter_1.png?alt=media&token=6062cb87-4078-4b67-8f68-9b19e8743ad3');
                         },
                       ),
                     );

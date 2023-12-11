@@ -299,7 +299,7 @@ class _ProdukDetailPageState extends State<ProdukDetailPage> {
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                height: 100,
+                height: 105,
                 padding: EdgeInsets.only(
                   top: 10,
                   bottom: 10,
@@ -366,21 +366,27 @@ class _ProdukDetailPageState extends State<ProdukDetailPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          CustomButton(
-                            title: "Tambah Keranjang",
-                            color: kPrimaryColor,
-                            onTap: () {},
-                            titleColor: kWhiteColor,
-                            width: 165,
+                          FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: CustomButton(
+                              title: "Tambah Keranjang",
+                              color: kPrimaryColor,
+                              onTap: () {},
+                              titleColor: kWhiteColor,
+                              width: 165,
+                            ),
                           ),
-                          CustomButton(
-                            title: "Beli Sekarang",
-                            color: kPrimaryColor,
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            titleColor: kWhiteColor,
-                            width: 165,
+                          FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: CustomButton(
+                              title: "Beli Sekarang",
+                              color: kPrimaryColor,
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              titleColor: kWhiteColor,
+                              width: 165,
+                            ),
                           ),
                         ],
                       ),

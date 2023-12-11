@@ -5,8 +5,8 @@ import '../../shared/theme.dart';
 class CustomChatCard extends StatelessWidget {
   final String imageUrl;
   final String name;
-  final String lastChat;
-  final String lastTime;
+  // final String lastChat;
+  // final String lastTime;
   final bool read;
   final Function() onTap;
 
@@ -14,8 +14,8 @@ class CustomChatCard extends StatelessWidget {
     super.key,
     required this.imageUrl,
     required this.name,
-    required this.lastChat,
-    required this.lastTime,
+    // required this.lastChat,
+    // required this.lastTime,
     this.read = false,
     required this.onTap
   });
@@ -83,29 +83,29 @@ class CustomChatCard extends StatelessWidget {
                           fit: BoxFit.fill,
                         ),
                         const SizedBox(width: 5),
-                        Text(
-                          lastChat,
-                          style: regularTextStyle.copyWith(
-                            fontSize: 12,
-                            color: kBlackColor,
-                          ),
-                        ),
+                        // Text(
+                        //   lastChat,
+                        //   style: regularTextStyle.copyWith(
+                        //     fontSize: 12,
+                        //     color: kBlackColor,
+                        //   ),
+                        // ),
                       ],
                     ),
                   ],
                 ),
               ],
             ),
-            Container(
-              margin: const EdgeInsets.only(top: 10),
-              child: Text(
-                lastTime,
-                style: regularTextStyle.copyWith(
-                  fontSize: 12,
-                  color: kBlackColor,
-                ),
-              ),
-            ),
+            // Container(
+            //   margin: const EdgeInsets.only(top: 10),
+            //   child: Text(
+            //     lastTime,
+            //     style: regularTextStyle.copyWith(
+            //       fontSize: 12,
+            //       color: kBlackColor,
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),

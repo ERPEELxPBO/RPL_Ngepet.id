@@ -5,13 +5,15 @@ class CustomSearchBar extends StatelessWidget {
   final bool enabled;
   final TextEditingController? controller;
   final Function(String)? onSubmitted;
+  final String hintText;
 
-  const CustomSearchBar({
-    Key? key,
-    this.enabled = true,
-    this.controller,
-    this.onSubmitted,
-  }) : super(key: key);
+  const CustomSearchBar(
+      {Key? key,
+      this.enabled = true,
+      this.controller,
+      this.onSubmitted,
+      this.hintText = "Temukan makanan, dokter, dll"})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class CustomSearchBar extends StatelessWidget {
         onFieldSubmitted: onSubmitted,
         cursorColor: kBlackColor,
         decoration: InputDecoration(
-          hintText: "Temukan makanan, dokter, dll",
+          hintText: hintText,
           hintStyle: regularTextStyle.copyWith(
             fontSize: 14,
             color: kSilverColor,

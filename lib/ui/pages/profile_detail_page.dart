@@ -59,12 +59,12 @@ class ProfileDetailPage extends StatelessWidget {
                                     left: 20,
                                     right: 20,
                                   ),
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     image: DecorationImage(
                                       fit: BoxFit.cover,
-                                      image: AssetImage(
-                                        "assets/user_6.png",
+                                      image: NetworkImage(
+                                        state.user.imageUrl,
                                       ),
                                     ),
                                   ),

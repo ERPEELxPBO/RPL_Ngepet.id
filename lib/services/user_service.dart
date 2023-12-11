@@ -13,6 +13,7 @@ class UserService {
         'username': user.username,
         'no_telepon': user.no_telepon,
         'role_id': user.role_id,
+        'imageUrl': user.imageUrl,
       });
     } catch (e) {
       throw e;
@@ -29,6 +30,7 @@ class UserService {
         username: snapshot['username'],
         no_telepon: snapshot['no_telepon'],
         role_id: snapshot['role_id'],
+        imageUrl: snapshot['imageUrl'],
       );
     } catch (e) {
       throw e;

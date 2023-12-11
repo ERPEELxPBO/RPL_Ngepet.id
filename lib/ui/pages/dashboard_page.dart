@@ -72,7 +72,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     Text(
                       "Perawatan Terdekat",
                       style: semiBoldTextStyle.copyWith(
-                          fontSize: 24, color: kBlackColor),
+                          fontSize: 20, color: kBlackColor),
                     ),
                     InkWell(
                       onTap: () {},
@@ -102,10 +102,15 @@ class _DashboardPageState extends State<DashboardPage> {
                     Text(
                       "Rekomendasi",
                       style: semiBoldTextStyle.copyWith(
-                          fontSize: 24, color: kBlackColor),
+                          fontSize: 20, color: kBlackColor),
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          "/katalog",
+                        );
+                      },
                       child: Text(
                         "Lihat Semua",
                         style: semiBoldTextStyle.copyWith(
@@ -262,12 +267,12 @@ Widget customFiturSection(BuildContext context) {
       children: [
         SizedBox(width: 20),
         CustomFitur(
-          title: "Toko",
+          title: "Katalog",
           iconPath: "assets/icons/icon_toko.png",
           onTap: () {
             Navigator.pushNamed(
               context,
-              "/detail-produk",
+              "/katalog",
             );
           },
         ),
@@ -334,19 +339,29 @@ Widget nearLocationSection() {
 }
 
 Widget rekomenSection(context, List<ProductModels> products) {
+  // Ambil 7 indeks acak dari panjang data produk
+  List<int> randomIndexes = generateRandomIndexes(products.length, 7);
+
   return SingleChildScrollView(
     scrollDirection: Axis.horizontal,
     child: Row(
       children: [
         SizedBox(width: 20),
         Row(
-          children: products.map((ProductModels product) {
+          children: randomIndexes.map((int index) {
             return RekomenProdukCard(
-              product,
+              products[index],
             );
           }).toList(),
         ),
       ],
     ),
   );
+}
+
+// Fungsi untuk menghasilkan indeks acak
+List<int> generateRandomIndexes(int dataLength, int count) {
+  List<int> indexes = List.generate(dataLength, (index) => index);
+  indexes.shuffle();
+  return indexes.take(count).toList();
 }

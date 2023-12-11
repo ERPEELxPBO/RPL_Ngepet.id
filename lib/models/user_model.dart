@@ -7,6 +7,7 @@ final class UserModel extends Equatable {
   final String username;
   final String no_telepon;
   final String role_id;
+  final String imageUrl;
 
   UserModel({
     required this.id,
@@ -14,7 +15,8 @@ final class UserModel extends Equatable {
     required this.name,
     required this.username,
     this.no_telepon = "",
-    this.role_id = "3",
+    this.role_id = "usr_usr",
+    this.imageUrl = "https://firebasestorage.googleapis.com/v0/b/ngepet-id.appspot.com/o/imageUsers%2Fdokter_1.png?alt=media&token=6062cb87-4078-4b67-8f68-9b19e8743ad3"
   });
 
   @override
@@ -24,6 +26,6 @@ final class UserModel extends Equatable {
         name,
         username,
         no_telepon,
-        role_id,
+        role_id,imageUrl,
       ];
 }

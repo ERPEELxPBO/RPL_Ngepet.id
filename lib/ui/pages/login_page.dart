@@ -47,12 +47,12 @@ class LoginPage extends StatelessWidget {
                       emailController, // Sesuaikan dengan controller yang diperlukan
                   validator: (value) {
                     // Contoh validasi email
-                    if (value == null || value.isEmpty) {
-                      return 'Email tidak boleh kosong';
-                    } else if (!value.contains('@')) {
-                      return 'Email tidak valid';
-                    }
-                    return null;
+                    // if (value == null || value.isEmpty) {
+                    //   return 'Email tidak boleh kosong';
+                    // } else if (!value.contains('@')) {
+                    //   return 'Email tidak valid';
+                    // }
+                    // return null;
                   },
                 ),
                 SizedBox(
@@ -64,11 +64,11 @@ class LoginPage extends StatelessWidget {
                   hintText: "Masukkan passoword sandi anda",
                   controller: passwordController,
                   validator: (value) {
-                    // Contoh validasi kata sandi
-                    if (value == null || value.isEmpty) {
-                      return 'Kata sandi tidak boleh kosong';
-                    }
-                    return null;
+                    // // Contoh validasi kata sandi
+                    // if (value == null || value.isEmpty) {
+                    //   return 'Kata sandi tidak boleh kosong';
+                    // }
+                    // return null;
                   },
                 ),
                 Container(

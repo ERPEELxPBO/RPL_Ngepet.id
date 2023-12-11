@@ -43,9 +43,9 @@ class RekomenProdukCard extends StatelessWidget {
           ),
           boxShadow: const [
             BoxShadow(
-              color: Color.fromRGBO(0, 0, 0, 63), // 25% hitam, // Warna shadow
+              color: Color.fromRGBO(0, 0, 0, 0.5), // 25% hitam, // Warna shadow
               offset: Offset(0, 4), // Posisi shadow (X, Y)
-              blurRadius: 4, // Radius blur
+              blurRadius: 10, // Radius blur
               spreadRadius: 0, // Jarak penyebaran shadow
             ),
           ],

@@ -1,37 +1,21 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ngepet_id/shared/theme.dart';
-import 'package:ngepet_id/ui/pages/custom_appbar_chat.dart';
 
-class ChattingPage extends StatelessWidget {
-  const ChattingPage({Key? key, required this.contactName}) : super(key: key);
-
-  final String contactName;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomChatAppBar(
-        title: contactName,
-      ),
-      body: ChatScreen(),
-    );
-  }
-}
-
-class ChatMessage {
-  final String text;
-  final DateTime timestamp;
-
-  ChatMessage({required this.text, required this.timestamp});
-}
+import '../../models/consultation_detail_models.dart';
+import '../../shared/theme.dart';
 
 class ChatScreen extends StatefulWidget {
+  final String consultationId;
+  final String receiverId;
+
+  ChatScreen({required this.consultationId, required this.receiverId});
+
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  final List<ChatMessage> messages = [];
+  final List<ConsultationDetailsModels> messages = [];
   final TextEditingController _textController = TextEditingController();
 
   @override
@@ -92,19 +76,18 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  Widget buildChatMessage(ChatMessage message) {
+  Widget buildChatMessage(ConsultationDetailsModels message) {
+    // Tentukan apakah pesan ini dari sender atau receiver
+    bool isSender = message.senderId == FirebaseAuth.instance.currentUser?.uid;
+
     return Align(
-      alignment: Alignment.centerRight,
+      alignment: isSender ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
         margin: EdgeInsets.all(8.0),
         padding: EdgeInsets.all(12.0),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(15),
-            bottomLeft: Radius.circular(15),
-            bottomRight: Radius.circular(15),
-          ),
-          color: kPrimaryColor,
+          borderRadius: BorderRadius.circular(15),
+          color: isSender ? kPrimaryColor : kSilver2Color,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -112,14 +95,15 @@ class _ChatScreenState extends State<ChatScreen> {
             Text(
               message.text,
               style: regularTextStyle.copyWith(
-                color: kWhiteColor,
+                color: isSender ? kWhiteColor : kBlackColor,
               ),
             ),
             SizedBox(height: 4.0),
             Text(
               formatTime(message.timestamp),
               style: regularTextStyle.copyWith(
-                  fontSize: 10.0, color: kSilver2Color),
+                  fontSize: 10.0,
+                  color: isSender ? kSilver2Color : kSilver3Color),
             ),
           ],
         ),
@@ -128,9 +112,8 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   void sendMessage(String text) {
-    setState(() {
-      messages.add(ChatMessage(text: text, timestamp: DateTime.now()));
-    });
+    // Kirim pesan ke Firebase atau implementasikan sesuai kebutuhan Anda
+    // Pastikan untuk mengupdate state messages dengan data yang baru
   }
 
   String formatTime(DateTime timestamp) {

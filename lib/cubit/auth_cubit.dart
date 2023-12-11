@@ -15,7 +15,9 @@ class AuthCubit extends Cubit<AuthState> {
       required String password,
       required String username,
       required String no_telepon,
-      String role_id = 'usr_usr'}) async {
+      String role_id = 'usr_usr',
+      String imageUrl =
+          'https://firebasestorage.googleapis.com/v0/b/ngepet-id.appspot.com/o/imageUsers%2Fdokter_1.png?alt=media&token=6062cb87-4078-4b67-8f68-9b19e8743ad3'}) async {
     try {
       emit(AuthLoading());
 
@@ -26,6 +28,7 @@ class AuthCubit extends Cubit<AuthState> {
         username: username,
         no_telepon: no_telepon,
         role_id: role_id,
+        imageUrl: imageUrl,
       );
 
       emit(AuthSuccess(user));

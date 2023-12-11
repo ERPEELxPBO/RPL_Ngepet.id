@@ -63,7 +63,7 @@ class _CartPageState extends State<CartPage> {
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                height: 180,
+                height: 185,
                 padding: EdgeInsets.only(
                   right: 20,
                   left: 20,
