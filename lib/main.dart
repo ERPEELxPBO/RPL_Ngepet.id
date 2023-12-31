@@ -3,13 +3,18 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ngepet_id/cubit/auth_cubit.dart';
+import 'package:ngepet_id/cubit/buka_toko_cubit.dart';
 import 'package:ngepet_id/cubit/consultation_cubit.dart';
+import 'package:ngepet_id/cubit/dokter_cubit.dart';
+import 'package:ngepet_id/cubit/location_pet_cubit.dart';
 import 'package:ngepet_id/cubit/page_cubit.dart';
 import 'package:ngepet_id/cubit/pilih_voucher_cubit.dart';
 import 'package:ngepet_id/cubit/product_cubit.dart';
 import 'package:ngepet_id/cubit/store_cubit.dart';
 import 'package:ngepet_id/ui/pages/ajukan_buka_toko_page.dart';
+import 'package:ngepet_id/ui/pages/konsultasi_page.dart';
 import 'package:ngepet_id/ui/pages/pencarian_page.dart';
+import 'package:ngepet_id/ui/pages/perawatan_page.dart';
 import 'package:ngepet_id/ui/pages/pilih_voucher_page.dart';
 import 'package:ngepet_id/ui/pages/profile_detail_page.dart';
 
@@ -24,7 +29,6 @@ import 'ui/pages/notifikasi_page.dart';
 import 'ui/pages/onboarding_page.dart';
 import 'ui/pages/pembayaran_page.dart';
 import 'ui/pages/pengiriman_page.dart';
-import 'ui/pages/produk_detail_page.dart';
 import 'ui/pages/register_page.dart';
 import 'ui/pages/pesanan_page.dart';
 import 'ui/pages/splash_page.dart';
@@ -74,6 +78,15 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => PilihVoucherCubit(),
         ),
+        BlocProvider(
+          create: (context) => BukaTokoCubit(),
+        ),
+        BlocProvider(
+          create: (context) => DokterCubit(),
+        ),
+        BlocProvider(
+          create: (context) => LocationPetCubit(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -94,6 +107,8 @@ class MyApp extends StatelessWidget {
           '/ajukan-role-dokter': (context) => const AjukanDokterPage(),
           '/pencarian': (context) => PencarianPage(),
           '/katalog': (context) => KatalogPage(),
+          '/perawatan': (context) => PerawatanPage(),
+          '/konsultasi': (context) => KonsultasiPage(),
         },
       ),
     );

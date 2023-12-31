@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ngepet_id/cubit/auth_cubit.dart';
 import 'package:ngepet_id/cubit/page_cubit.dart';
 import 'package:ngepet_id/ui/widgets/custom_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../shared/theme.dart';
 import '../widgets/setting_item_card.dart';
@@ -125,8 +126,15 @@ class ProfilePage extends StatelessWidget {
               ),
               SettingItemCard(
                 title: "Ajukan Buka Toko",
-                onTap: () {
-                  Navigator.pushNamed(context, '/ajukan-toko');
+                onTap: () async {
+                  SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool hasSubmitted = prefs.getBool('hasSubmittedBukaToko') ?? false;
+
+    if (hasSubmitted) {
+      Navigator.pushNamed(context, '/verifikasi-toko');
+    } else {
+      Navigator.pushNamed(context, '/ajukan-toko');
+    }
                 },
               ),
               SettingItemCard(

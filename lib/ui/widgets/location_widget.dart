@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:ngepet_id/models/location_pet_model.dart';
 import '../../shared/theme.dart';
 
 class LocationWidget extends StatelessWidget {
-  final String title;
-  final String imageUrl;
-  final double jarak;
-  final Color color;
+  final LocationPetModels locPet;
 
-  const LocationWidget({
+  const LocationWidget(
+    this.locPet, {
     super.key,
-    required this.title,
-    required this.jarak,
-    this.color = const Color(0xffF3AAFF),
-    required this.imageUrl,
   });
 
   @override
@@ -32,7 +27,7 @@ class LocationWidget extends StatelessWidget {
               left: 15,
             ),
             decoration: BoxDecoration(
-                color: color, borderRadius: BorderRadius.circular(30)),
+                color: Color(0xffF3AAFF), borderRadius: BorderRadius.circular(30)),
             child: Column(
               children: [
                 Row(
@@ -52,7 +47,7 @@ class LocationWidget extends StatelessWidget {
                     ),
                     const SizedBox(width: 10),
                     Text(
-                      "$jarak Km",
+                      "${locPet.jarak} Km",
                       style: regularTextStyle.copyWith(
                         fontSize: 14,
                         color: kPrimaryColor,
@@ -67,8 +62,8 @@ class LocationWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     image: DecorationImage(
-                      image: AssetImage(
-                        imageUrl,
+                      image: NetworkImage(
+                        locPet.imageUrl,
                       ),
                     ),
                   ),
@@ -82,7 +77,7 @@ class LocationWidget extends StatelessWidget {
               horizontal: 15,
             ),
             child: Text(
-              title,
+              locPet.name,
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,
               maxLines: 2,

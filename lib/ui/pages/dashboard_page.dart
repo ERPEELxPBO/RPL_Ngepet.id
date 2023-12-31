@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ngepet_id/cubit/auth_cubit.dart';
+import 'package:ngepet_id/cubit/location_pet_cubit.dart';
 import 'package:ngepet_id/cubit/product_cubit.dart';
-import 'package:ngepet_id/cubit/store_cubit.dart';
+import 'package:ngepet_id/models/location_pet_model.dart';
 import 'package:ngepet_id/shared/theme.dart';
 import 'package:ngepet_id/ui/widgets/custom_fitur.dart';
 import 'package:ngepet_id/ui/widgets/location_widget.dart';
@@ -90,7 +91,27 @@ class _DashboardPageState extends State<DashboardPage> {
               const SizedBox(
                 height: 20,
               ),
-              nearLocationSection(),
+              BlocConsumer<LocationPetCubit, LocationPetState>(
+                listener: (context, state) {
+                  if (state is LocationPetFailed) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: kRedColor,
+                        content: Text(state.error),
+                      ),
+                    );
+                  }
+                },
+                builder: (context, state) {
+                  if (state is LocationPetSuccess) {
+                    return nearLocationSection(context, state.locationPets);
+                  }
+
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              ),
               const SizedBox(
                 height: 15,
               ),
@@ -141,7 +162,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     return rekomenSection(context, state.products);
                   }
 
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 },
@@ -183,7 +204,7 @@ Widget headerDasboard(BuildContext context) {
                 ),
               );
             } else {
-              return SizedBox();
+              return const SizedBox();
             }
           },
         ),
@@ -265,7 +286,7 @@ Widget customFiturSection(BuildContext context) {
     scrollDirection: Axis.horizontal,
     child: Row(
       children: [
-        SizedBox(width: 20),
+        const SizedBox(width: 20),
         CustomFitur(
           title: "Katalog",
           iconPath: "assets/icons/icon_toko.png",
@@ -282,7 +303,7 @@ Widget customFiturSection(BuildContext context) {
           onTap: () {
             Navigator.pushNamed(
               context,
-              "/detail-produk",
+              "/konsultasi",
             );
           },
         ),
@@ -292,7 +313,7 @@ Widget customFiturSection(BuildContext context) {
           onTap: () {
             Navigator.pushNamed(
               context,
-              "/detail-produk",
+              "/perawatan",
             );
           },
         ),
@@ -311,27 +332,21 @@ Widget customFiturSection(BuildContext context) {
   );
 }
 
-Widget nearLocationSection() {
-  return const SingleChildScrollView(
+Widget nearLocationSection(context, List<LocationPetModels> locPet) {
+  // Ambil 7 indeks acak dari panjang data produk
+  List<int> randomIndexes = generateRandomIndexes(locPet.length, 1);
+
+  return SingleChildScrollView(
     scrollDirection: Axis.horizontal,
     child: Row(
       children: [
-        SizedBox(width: 20),
-        LocationWidget(
-          title: "Pet & Bliss | Pet Hotel & Grooming",
-          imageUrl: "assets/tempat_1.png",
-          jarak: 0.1,
-        ),
-        LocationWidget(
-          title: "Alita Pet Care",
-          imageUrl: "assets/tempat_2.png",
-          jarak: 0.2,
-          color: Color(0xffFAE4B1),
-        ),
-        LocationWidget(
-          title: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          imageUrl: "assets/tempat_1.png",
-          jarak: 0.3,
+        const SizedBox(width: 20),
+        Row(
+          children: randomIndexes.map((int index) {
+            return LocationWidget(
+              locPet[index],
+            );
+          }).toList(),
         ),
       ],
     ),
@@ -346,7 +361,7 @@ Widget rekomenSection(context, List<ProductModels> products) {
     scrollDirection: Axis.horizontal,
     child: Row(
       children: [
-        SizedBox(width: 20),
+        const SizedBox(width: 20),
         Row(
           children: randomIndexes.map((int index) {
             return RekomenProdukCard(

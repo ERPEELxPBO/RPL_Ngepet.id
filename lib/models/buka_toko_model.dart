@@ -21,6 +21,28 @@ final class BukaTokoModel extends Equatable {
     required this.email,
   });
 
+  BukaTokoModel copyWith({
+    String? id,
+    String? userId,
+    String? namaToko,
+    String? deskripsiToko,
+    String? alamatToko,
+    String? namaPemilik,
+    String? noTelepon,
+    String? email,
+  }) {
+    return BukaTokoModel(
+      id: id ?? this.id,
+      userId: userId ?? this.userId,
+      namaToko: namaToko ?? this.namaToko,
+      deskripsiToko: deskripsiToko ?? this.deskripsiToko,
+      alamatToko: alamatToko ?? this.alamatToko,
+      namaPemilik: namaPemilik ?? this.namaPemilik,
+      noTelepon: noTelepon ?? this.noTelepon,
+      email: email ?? this.email,
+    );
+  }
+
   @override
   List<Object?> get props => [
         id,

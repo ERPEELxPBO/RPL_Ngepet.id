@@ -1,8 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ngepet_id/cubit/consultation_cubit.dart';
-import 'package:ngepet_id/models/consultation_models.dart';
 import 'package:ngepet_id/services/user_service.dart';
 import 'package:ngepet_id/shared/theme.dart';
 import 'package:ngepet_id/ui/pages/chatting_page.dart';
@@ -91,7 +91,7 @@ class _ChatPageState extends State<ChatPage> {
                                     builder: (context, snapshot) {
                                       if (snapshot.connectionState ==
                                           ConnectionState.waiting) {
-                                        return CircularProgressIndicator();
+                                        return const CircularProgressIndicator();
                                       } else if (snapshot.hasError) {
                                         return Text("Error: ${snapshot.error}");
                                       } else {
@@ -128,8 +128,7 @@ class _ChatPageState extends State<ChatPage> {
                                 child: Text('Error: ${state.errorMessage}'),
                               );
                             } else {
-                              print(state);
-                              return Center(
+                              return const Center(
                                 child: CircularProgressIndicator(),
                               );
                             }

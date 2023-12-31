@@ -9,7 +9,7 @@ import '../widgets/top_section_widget.dart';
 // String? userId = user?.uid; // ID autentikasi pengguna
 
 class AjukanDokterPage extends StatelessWidget {
-  const AjukanDokterPage({Key? key});
+  const AjukanDokterPage({super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -37,42 +37,54 @@ class AjukanDokterPage extends StatelessWidget {
                       hintText: "Masukkan Nama Dokter",
                       controller:
                           TextEditingController(), // Sesuaikan dengan controller yang diperlukan
-                      validator: (value) {},
+                      validator: (value) {
+                        return null;
+                      },
                     ),
                     CustomTextFormField(
                       title: "Riwayat Pendidikan*",
                       hintText: "Masukkan Riwayat Pendidikan",
                       controller:
                           TextEditingController(), // Sesuaikan dengan controller yang diperlukan
-                      validator: (value) {},
+                      validator: (value) {
+                        return null;
+                      },
                     ),
                     CustomTextFormField(
                       title: "Pengalaman Praktik*",
                       hintText: "Masukkan Pengalaman Praktik",
                       controller:
                           TextEditingController(), // Sesuaikan dengan controller yang diperlukan
-                      validator: (value) {},
+                      validator: (value) {
+                        return null;
+                      },
                     ),
                     CustomTextFormField(
                       title: "Bidang Keahlian*",
                       hintText: "Masukkan Bidang Keahlian",
                       controller:
                           TextEditingController(), // Sesuaikan dengan controller yang diperlukan
-                      validator: (value) {},
+                      validator: (value) {
+                        return null;
+                      },
                     ),
                     CustomTextFormField(
                       title: "Kemampuan Teknis*",
                       hintText: "Masukkan Kemampuan Teknis",
                       controller:
                           TextEditingController(), // Sesuaikan dengan controller yang diperlukan
-                      validator: (value) {},
+                      validator: (value) {
+                        return null;
+                      },
                     ),
                     CustomTextFormField(
                       title: "Sertifikasi*",
                       hintText: "Masukkan Sertifikasi",
                       controller:
                           TextEditingController(), // Sesuaikan dengan controller yang diperlukan
-                      validator: (value) {},
+                      validator: (value) {
+                        return null;
+                      },
                     ),
                     CustomButton(
                       title: "Ajukan Role",

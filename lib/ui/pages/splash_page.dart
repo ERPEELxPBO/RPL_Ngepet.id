@@ -61,14 +61,17 @@ class _SplashPageState extends State<SplashPage> {
                     ),
                   ),
                 ),
-                Text(
-                  "ngepet_id",
-                  style: boldTextStyle.copyWith(
-                    color: kWhiteColor,
-                    fontSize: 60,
-                    letterSpacing: 5,
+                Container(
+                  width: 318,
+                  height: 100,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                        'assets/icons/logo_ngepet.png',
+                      ),
+                    ),
                   ),
-                )
+                ),
               ],
             ),
           ),
